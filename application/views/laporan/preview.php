@@ -1,0 +1,71 @@
+<!--<section class="invoice">-->
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> Invoice : <?= $data_p['invoice'];?>
+            <small class="pull-right">Tanggal: <?= $data_p['tanggal'];?></small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Kode Barang</th>
+              <th>Nama Barang</th>
+              <th>Harga Satuan</th>
+              <th>Jumlah</th>
+              <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+                <?php $no=0;$total=0;$tot=0;foreach($data as $r){$no++;
+                 $hasil_rupiah = "Rp " . number_format($r['harga'], 0, '', '.');
+                 $sub = "Rp " . number_format($r['total'], 0, '', '.');
+                 $tot += $r['total'];
+                 $total = "Rp " . number_format($tot, 0, '', '.');
+                 ?>
+                
+            <tr>
+              <td><?=$no;?></td>
+              <td><?= $r['kode_barang'];?></td>
+              <td><?= $r['produk'];?></td>
+              <td><?= $hasil_rupiah;?></td>
+              <td><?= $r['jumlah'];?></td>
+              <td><?= $sub;?></td>
+            </tr>
+                <?php } ?>
+            <tr>
+                <td colspan="4">&nbsp;</td>
+                <th>Grand total</th>
+                <td colspan=""><?= $total;?></td>
+            </tr>
+            <tr>
+                <td colspan="4">&nbsp;</td>
+                <th>Bayar</th>
+                <td colspan=""><?= "Rp " . number_format($data_p['bayar'], 0, '', '.');?></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+     <div class="row no-print">
+        <div class="col-xs-12">
+          <a href="<?= BASE_URL;?>penjualan/cetak/<?= $data_p['id'];?>" target="_blank" class="btn btn-primary pull-right"><i class="fa fa-print"></i> Print</a>
+
+        </div>
+      </div>
+    <!--</section>-->
